@@ -48,6 +48,11 @@ public class Standings {
 
 	}
 
+	public String[] getElement(int i) {
+		return standings[i];
+	}
+
+	
 	public Standings(Standings s) {
 
 		numOfPlayers = s.numOfPlayers;

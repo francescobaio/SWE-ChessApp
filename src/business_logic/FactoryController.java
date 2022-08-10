@@ -9,9 +9,9 @@ public class FactoryController {
 	private UserFactory userFactory;
 	
 	
-	public Player createAccount(String name,String surname,String birthDate,int age,int ratingElo,String nationality) {
+	public Player createAccount(String name,String surname,String birthDate,int age,int ratingElo,String title,String nationality) {
 		
-		return userFactory.createActor(name, surname, birthDate, age, ratingElo,nationality);
+		return userFactory.createActor(name, surname, birthDate, age, ratingElo,title,nationality);
 		
 		
 	}

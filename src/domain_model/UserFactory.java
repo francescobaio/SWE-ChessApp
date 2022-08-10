@@ -4,9 +4,9 @@ package domain_model;
 public class UserFactory {
 
 	
-	public Player createActor(String name,String surname,String birthDate,int age,int ratingElo,String nationality) {
+	public Player createActor(String name,String surname,String birthDate,int age,int ratingElo,String title,String nationality) {
 		
-		return new Player(name,surname,birthDate,age,ratingElo,nationality);
+		return new Player(name,surname,birthDate,age,ratingElo,title,nationality);
 		
 	}
 	
