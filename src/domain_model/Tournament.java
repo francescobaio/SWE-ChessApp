@@ -132,6 +132,34 @@ public class Tournament {
 		scoreboard = new Scoreboard(listOfPlayers.size());
 		scoreboard.initialize(getStandings());
 
+		for (int i = 0; i < listOfPlayers.size(); i++) {
+			listOfPlayers.get(i).setPlayingTournament(this);
+		}
+
+	}
+
+	public int getPerformance(String name) {
+
+		String[][] copyStandings = standings.getStandings();
+
+		for (int i = 1; i < listOfPlayers.size() + 1; i++) {
+			if (copyStandings[i][3].equals(name)) {
+				return Integer.parseInt(copyStandings[i][5]);
+			}
+
+		}
+
+		return -1;
+	}
+
+	public float getPlayerVariation(Player p) {
+
+		return scoreboard.getPlayerVariation(p.getName() + " " + p.getSurname());
+
+	}
+
+	public float getPlayerScore(Player p) {
+		return standings.getPlayerScore(p.getName() + " " + p.getSurname());
 	}
 
 }

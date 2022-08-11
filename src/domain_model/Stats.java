@@ -1,4 +1,4 @@
-package domain_model;
+ package domain_model;
 
 public class Stats {
 
@@ -84,5 +84,9 @@ public class Stats {
 	public void setHighestRatingElo(int highestRatingElo) {
 		this.highestRatingElo = highestRatingElo;
 	}
+	
+	
+	
+	
 
 }

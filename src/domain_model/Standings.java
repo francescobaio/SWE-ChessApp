@@ -41,6 +41,26 @@ public class Standings {
 		}
 
 	}
+	
+	
+	public String[][] getStandings(){
+		 
+		String[][] copyStandings = new String[numOfPlayers+1][8];
+		
+		for(int i=0;i<numOfPlayers + 1;i++) {
+			for(int j=0;j<8;j++) {
+				copyStandings[i][j] = standings[i][j];
+			}
+			
+		}
+		return copyStandings;
+	}
+	
+	
+	
+	
+	
+	
 
 	public String getElement(int i, int j) {
 
@@ -173,6 +193,35 @@ public class Standings {
 		
 		standings = sortedStandings;
 	}
+	
+	
+	
+	public float getPlayerScore(String name) {
+		
+		int index = 1;
+		boolean found = false;
+		float score = 0.0f;
+		
+		
+		while(found == false) {
+			if(standings[index][3].equals(name)) {
+				score = Float.parseFloat(standings[index][1]);
+				found = true;
+			}
+			
+			index++;
+			
+		}
+		
+		return score;
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 }
 
