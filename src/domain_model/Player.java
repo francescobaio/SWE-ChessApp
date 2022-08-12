@@ -14,8 +14,12 @@ public class Player extends User {
 	private ArrayList<Tournament> subscribedTournaments = new ArrayList<Tournament>();
 	private Tournament playingTournament;
 	private Stats playerStats;
+	
+	
+	public Player() {}
+	
 
-	public Player(String name, String surname, String birthDate, int age, int ratingElo, String title,
+	public Player(String name, String surname,String birthDate, int age, int ratingElo, String title,
 			String nationality) {
 
 		super(name, surname);
@@ -97,6 +101,23 @@ public class Player extends User {
 	public void setPlayingTournament(Tournament playingTournament) {
 		this.playingTournament = playingTournament;
 	}
+	
+	
+	
+	
+	
+	public void setAttributes(Object[] params) {
+		
+		super.setAttributes(params);
+		birthDate = (String)params[2];
+		age = (int)params[3];
+		ratingElo = (int) params[4];
+		title = (String)params[5];
+		nationality = (String) params[6];
+		
+	}
+	
+		
 
 	public void updateStats() {
 

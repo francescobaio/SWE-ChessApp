@@ -7,6 +7,8 @@ public class TournamentManager extends User {
 	private int phoneNumber;
 
 	private ManagerTournamentCatalog managerCatalog;
+	
+	public TournamentManager() {}
 
 	public TournamentManager(String name, String surname, int phoneNumber, ManagerTournamentCatalog managerCatalog) {
 
@@ -32,5 +34,14 @@ public class TournamentManager extends User {
 		managerCatalog.addTournament(t);
 
 	}
+	
+	
+	public void setAttributes(Object[] params) {
+			
+			super.setAttributes(params);
+			phoneNumber = (int) params[2];
+			managerCatalog = (ManagerTournamentCatalog)params[3];
+		}
+		
 
 }

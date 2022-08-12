@@ -3,18 +3,20 @@ package domain_model;
 import java.util.ArrayList;
 
 public class User {
-	
+
 	private String name;
 	private String surname;
 	
 	
-	public User(String name,String surname) {
-		
+	
+	public User() {}
+
+	public User(String name, String surname) {
+
 		this.name = name;
 		this.surname = surname;
 	}
-	
-	
+
 	public String getName() {
 		return name;
 	}
@@ -24,25 +26,32 @@ public class User {
 	}
 	
 	
-	public ArrayList<String> showTournaments() {
+	public void setAttributes(Object[] params) {
+		
+		name = (String) params[0];
+		surname = (String)params[1];
+		
+	}	
 
-		Tournament[] arrayOfTournament = (Tournament[]) GlobalTournamentCatalog.getInstance().getListOfTournaments()
-				.toArray();
-		ArrayList<String> listOfNames = new ArrayList<String>();
+	
+	public ArrayList<String> showTournaments() throws Exception {
 
-		for (Tournament t : arrayOfTournament) {
-			listOfNames.add(t.getName());
+		ArrayList<Tournament> tournaments = GlobalCatalogDisplayer.getInstance().displayTournaments();
+		ArrayList<String> namesOfTournaments = new ArrayList<>();
+
+		for (int i = 0; i < tournaments.size(); i++) {
+			namesOfTournaments.add(tournaments.get(i).getName());
 		}
 
-		return listOfNames;
+		return namesOfTournaments;
+
 	}
-	
 
 	public Tournament showTournamentDetails(String name) throws Exception {
 
-		Tournament[] arrayOfTournament = (Tournament[]) GlobalTournamentCatalog.getInstance().getListOfTournaments().toArray();
+		ArrayList<Tournament> tournaments = GlobalCatalogDisplayer.getInstance().displayTournaments();
 
-		for (Tournament t : arrayOfTournament) {
+		for (Tournament t : tournaments) {
 			if (t.getName() == name) {
 				return t;
 			}
@@ -51,23 +60,5 @@ public class User {
 	}
 
 	
-	public void signUp(String username, String password, String birthDate, int age, int ratingElo, String nationality)
-			throws Exception {
-
-		if (Session.getInstance().getUserMap().containsKey(username)) {
-			throw new Exception(username + "already exists.");
-		}
-
-		Player player = factoryController.createAccount(name,surname, birthDate, age, ratingElo,nationality);
-		
-		
-		
-		
-		
-		
-		
-
-	}
-
-
+	
 }

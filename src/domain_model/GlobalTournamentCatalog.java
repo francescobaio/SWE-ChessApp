@@ -2,21 +2,11 @@ package domain_model;
 
 import java.util.HashSet;
 
-public class GlobalTournamentCatalog {
-	
+public class GlobalTournamentCatalog implements Observer {
 
 	private HashSet<Tournament> listOfTournaments = new HashSet<>();
 
-	private static GlobalTournamentCatalog instance = null;
-
-	private GlobalTournamentCatalog() {}
-
-	public static GlobalTournamentCatalog getInstance() {
-
-		if (instance == null) {
-			instance = new GlobalTournamentCatalog();
-		}
-		return instance;
+	public GlobalTournamentCatalog() {
 	}
 
 	public HashSet<Tournament> getListOfTournaments() {
@@ -34,6 +24,19 @@ public class GlobalTournamentCatalog {
 
 		listOfTournaments.add(t);
 
+	}
+
+	@Override
+	public void update(Object arg) {
+
+		if (listOfTournaments.contains(arg)) {
+
+			removeTournament((Tournament) arg);
+
+		} else {
+
+			addTournament((Tournament) arg);
+		}
 	}
 
 }

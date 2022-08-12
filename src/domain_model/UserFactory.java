@@ -4,25 +4,21 @@ package domain_model;
 public class UserFactory {
 
 	
-	public Player createActor(String name,String surname,String birthDate,int age,int ratingElo,String title,String nationality) {
+	public User createActor(Object[] params,UserType type) {
 		
-		return new Player(name,surname,birthDate,age,ratingElo,title,nationality);
+		User account =  null;
+		if(type == UserType.Player) {
+			account = new Player();
+		}else if(type == UserType.Referee) {
+			account = new Referee();
+		}else if(type == UserType.TournamentManager) {
+			account = new TournamentManager();
+		}
 		
+		account.setAttributes(params);
+		return account;
 	}
 	
-	
-
-	public TournamentManager createActor(String name, String surname,int phoneNumber, ManagerTournamentCatalog managerCatalog) {
-		
-		return new TournamentManager(name,surname,phoneNumber,managerCatalog);
-		
-	} 
-	
-	public Referee createActor(String name,String surname,Tournament activeTournament) {
-		
-		return new Referee(name,surname,activeTournament);
-		
-	}
 
 }
 
