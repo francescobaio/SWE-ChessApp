@@ -19,10 +19,10 @@ public class Player extends ChessPerson {
 	public Player() {}
 	
 
-	public Player(String name, String surname,Session session,String birthDate, int age, int ratingElo, String title,
+	public Player(String name, String surname,TournamentDisplayer tournamentDisplayer,AccountRemover accountRemover,String birthDate, int age, int ratingElo, String title,
 			String nationality) {
 
-		super(name, surname,session);
+		super(name, surname,tournamentDisplayer,accountRemover);
 		this.birthDate = birthDate;
 		this.age = age;
 		this.ratingElo = ratingElo;
@@ -109,11 +109,11 @@ public class Player extends ChessPerson {
 	public void setAttributes(Object[] params) {
 		
 		super.setAttributes(params);
-		birthDate = (String)params[2];
-		age = (int)params[3];
-		ratingElo = (int) params[4];
-		title = (String)params[5];
-		nationality = (String) params[6];
+		birthDate = (String)params[4];
+		age = (int)params[5];
+		ratingElo = (int) params[6];
+		title = (String)params[7];
+		nationality = (String) params[8];
 		
 	}
 	
@@ -184,18 +184,22 @@ public class Player extends ChessPerson {
 	
 	
 	
-	public void subscribeTournament(Tournament t) {
+	public void subscribeTournament(Tournament t){
 		subscribedTournaments.add(t);
 	}
 	
 	
-	public void unsubscribeTournament(Tournament t ) {
+	public void unsubscribeTournament(Tournament t) {
 		subscribedTournaments.remove(t);
 	}
 	
+	public Stats getStatistics() {
+		return new Stats(playerStats);
+	}
 	
-	
-	
+	public Tournament getCurrentTournament() {
+		return new Tournament(playingTournament);
+	}
 	
 	
 

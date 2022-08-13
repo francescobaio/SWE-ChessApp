@@ -6,9 +6,9 @@ public class Referee extends ChessPerson {
 	
 	public Referee() {}
 
-	public Referee(String name, String surname,Session session,Tournament activeTournament) {
+	public Referee(String name, String surname,TournamentDisplayer tournamentDisplayer,AccountRemover accountRemover,Tournament activeTournament) {
 
-		super(name, surname,session);
+		super(name, surname,tournamentDisplayer,accountRemover);
 		this.activeTournament = activeTournament;
 
 	}
@@ -17,9 +17,11 @@ public class Referee extends ChessPerson {
 	public void setAttributes(Object[] params) {
 		
 		super.setAttributes(params);
-		activeTournament = (Tournament)params[2];
+		activeTournament = (Tournament)params[4];
 		
 	}
+	
+	
 	
 	
 

@@ -6,15 +6,17 @@ public class Person {
 
 	private String name;
 	private String surname;
+	private TournamentDisplayer tournamentDisplayer;
 	
 	
 	
 	public Person() {}
 
-	public Person(String name, String surname) {
+	public Person(String name, String surname,TournamentDisplayer tournamentDisplayer) {
 
 		this.name = name;
 		this.surname = surname;
+		this.tournamentDisplayer = tournamentDisplayer;
 	}
 
 	public String getName() {
@@ -25,18 +27,22 @@ public class Person {
 		return surname;
 	}
 	
+	public void setName(String name) {
+		this.name = name;
+	}
 	
-	public void setAttributes(Object[] params) {
-		
-		name = (String) params[0];
-		surname = (String)params[1];
-		
-	}	
-
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
 	
-	public ArrayList<String> showTournaments() throws Exception {
+	public void setTournamentDisplayer(TournamentDisplayer tournamentDisplayer) {
+		this.tournamentDisplayer = tournamentDisplayer;
+	}
+	
+	
+	public ArrayList<String> showTournaments() {
 
-		ArrayList<Tournament> tournaments = GlobalCatalogDisplayer.getInstance().displayTournaments();
+		ArrayList<Tournament> tournaments = tournamentDisplayer.displayTournaments();
 		ArrayList<String> namesOfTournaments = new ArrayList<>();
 
 		for (int i = 0; i < tournaments.size(); i++) {
@@ -49,7 +55,7 @@ public class Person {
 
 	public Tournament showTournamentDetails(String name) throws Exception {
 
-		ArrayList<Tournament> tournaments = GlobalCatalogDisplayer.getInstance().displayTournaments();
+		ArrayList<Tournament> tournaments = tournamentDisplayer.displayTournaments();
 
 		for (Tournament t : tournaments) {
 			if (t.getName() == name) {

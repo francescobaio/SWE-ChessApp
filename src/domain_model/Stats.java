@@ -1,4 +1,4 @@
- package domain_model;
+package domain_model;
 
 public class Stats {
 
@@ -11,15 +11,22 @@ public class Stats {
 	private int lowestRatingElo;
 	private int highestRatingElo;
 
-	
-	
 	public Stats(int ratingElo) {
-		
+
 		lowestRatingElo = ratingElo;
 		highestRatingElo = ratingElo;
 	}
-	
 
+	public Stats(Stats s) {
+		numOfTournaments = s.numOfTournaments;
+		lastPerformance = s.lastPerformance;
+		numOfGames = s.numOfGames;
+		numOfWins = s.numOfWins;
+		numOfDraws = s.numOfDraws;
+		numOfDefeats = s.numOfDefeats;
+		lowestRatingElo = s.lowestRatingElo;
+		highestRatingElo = s.highestRatingElo;
+	}
 
 	public int getNumOfTournaments() {
 		return numOfTournaments;
@@ -84,9 +91,5 @@ public class Stats {
 	public void setHighestRatingElo(int highestRatingElo) {
 		this.highestRatingElo = highestRatingElo;
 	}
-	
-	
-	
-	
 
 }

@@ -61,7 +61,7 @@ public class Session implements AccountCreator,AccountRemover {
 
 	}
 
-	public ChessPerson signin(String username, String password) throws IllegalArgumentException {
+	public ChessPerson signIn(String username, String password) throws IllegalArgumentException {
 
 		if (accounts.containsKey(username)) {
 

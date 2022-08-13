@@ -2,79 +2,42 @@ package business_logic;
 
 import java.util.ArrayList;
 
-import domain_model.Tournament;
-import domain_model.Person;
+import domain_model.ChessPerson;
+import domain_model.User;
 import domain_model.UserType;
 
+public class UserController extends PersonController {
 
-public class UserController {
+	private User user;
 
-	private Person user;
-	private SessionController sc;
-
-	public UserController(Person user,SessionController sc) {
-
+	public UserController(User user) {
+		super(user);
 		this.user = user;
-		this.sc = sc;
-
 	}
 
-	public ArrayList<String> showTournaments() {
+	public ChessPerson login(String username, String password) {
 
 		try {
 
-			return user.showTournaments();
+			return user.signIn(username, password);
 
-		} catch (Exception e) {
+		} catch (IllegalArgumentException e) {
 
 			System.out.println(e.getMessage());
 			return null;
 		}
-
 	}
-
-	public Tournament showTournamentDetails(String name) {
-
-		try {
-
-			return user.showTournamentDetails(name);
-
-		} catch (Exception e) {
-
-			System.out.println(e.getMessage());
-			return null;
-
-		}
-
-	}
-
-	public Person login(String username, String password) {
-		
-		
-		try {
-			
-			return sc.signin(username, password);
-			
-			
-		}catch(IllegalArgumentException e) {
-			
-			System.out.println(e.getMessage());
-			return null;
-		}	
-	}
-	
-	
 
 	public void signUp(Object[] params, UserType type, String username, String password) {
 
 		try {
 
-			sc.createAccount(params, type, username, password);
-			
+			user.createAccount(params, type, username, password);
+
 		} catch (IllegalArgumentException e) {
-			
+
 			System.out.println(e.getMessage());
-			
+
 		}
 
 	}

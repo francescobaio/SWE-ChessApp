@@ -1,8 +1,9 @@
 package domain_model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
-public class GlobalTournamentCatalog implements Observer {
+public class GlobalTournamentCatalog implements Observer, TournamentDisplayer {
 
 	private HashSet<Tournament> listOfTournaments = new HashSet<>();
 
@@ -37,6 +38,14 @@ public class GlobalTournamentCatalog implements Observer {
 
 			addTournament((Tournament) arg);
 		}
+	}
+
+	@Override
+	public ArrayList<Tournament> displayTournaments() {
+		
+		ArrayList<Tournament> tournaments = new ArrayList<Tournament>(listOfTournaments);
+		tournaments.sort(new DateComparator());
+		return tournaments;
 	}
 
 }

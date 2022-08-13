@@ -7,12 +7,14 @@ public class TournamentManager extends ChessPerson {
 	private int phoneNumber;
 
 	private ManagerTournamentCatalog managerCatalog;
-	
-	public TournamentManager() {}
 
-	public TournamentManager(String name, String surname,Session session,int phoneNumber, ManagerTournamentCatalog managerCatalog) {
+	public TournamentManager() {
+	}
 
-		super(name, surname,session);
+	public TournamentManager(String name, String surname, TournamentDisplayer tournamentDisplayer,
+			AccountRemover accountRemover, int phoneNumber, ManagerTournamentCatalog managerCatalog) {
+
+		super(name, surname, tournamentDisplayer, accountRemover);
 		this.phoneNumber = phoneNumber;
 		this.managerCatalog = managerCatalog;
 
@@ -27,21 +29,48 @@ public class TournamentManager extends ChessPerson {
 	}
 
 	public void createTournament(String name, String province, String region, String startingDate, String endingDate,
-			String timeControl, int numOfRounds, String refereeName, String managerName,int maxPlayers) {
+			String timeControl, int numOfRounds, String refereeName, String managerName, int maxPlayers) {
 
 		Tournament t = new Tournament(name, province, region, startingDate, endingDate, timeControl, numOfRounds,
-				refereeName, this.getName(),maxPlayers);
+				refereeName, this.getName(), maxPlayers);
 		managerCatalog.addTournament(t);
 
 	}
-	
-	
+
+	public void removeTournament(Tournament t) {
+		managerCatalog.removeTournament(t);
+	}
+
 	public void setAttributes(Object[] params) {
-			
-			super.setAttributes(params);
-			phoneNumber = (int) params[2];
-			managerCatalog = (ManagerTournamentCatalog)params[3];
-		}
+
+		super.setAttributes(params);
+		phoneNumber = (int) params[4];
+		managerCatalog = (ManagerTournamentCatalog) params[5];
+	}
+	
+	
+	public void removePlayer(Tournament t,Player p) {
 		
+		t.removePlayer(p);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

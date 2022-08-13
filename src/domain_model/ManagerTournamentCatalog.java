@@ -21,12 +21,9 @@ public class ManagerTournamentCatalog extends Observable {
 		notify(t);
 	}
 
-	public void removeTournament(Tournament t) throws Exception {
-		if (managerTournaments.remove(t)) {
-			notify(t);
-		} else {
-			throw new Exception("No such Tournament found");
-		}
+	public void removeTournament(Tournament t) {
+		managerTournaments.remove(t);
+		notify(t);
 	}
-	
+
 }

@@ -34,6 +34,19 @@ public class Tournament {
 
 	}
 
+	public Tournament(Tournament t) {
+		name = t.name;
+		province = t.province;
+		region = t.region;
+		startingDate = t.startingDate;
+		endingDate = t.endingDate;
+		timeControl = t.timeControl;
+		numOfRounds = t.numOfRounds;
+		refereeName = t.refereeName;
+		managerName = t.managerName;
+		maxPlayers = t.maxPlayers;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -93,10 +106,8 @@ public class Tournament {
 		listOfPlayers.add(p);
 	}
 
-	public void removePlayer(Player p) throws Exception {
-		if (!listOfPlayers.remove(p)) {
-			throw new Exception("Player not found");
-		}
+	public void removePlayer(Player p) {
+		listOfPlayers.remove(p);
 	}
 
 	public void editInformation(String nameInformation, Object information) {
