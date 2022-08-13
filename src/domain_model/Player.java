@@ -2,7 +2,7 @@ package domain_model;
 
 import java.util.ArrayList;
 
-public class Player extends User {
+public class Player extends ChessPerson {
 
 	private String birthDate;
 	private int age;
@@ -19,10 +19,10 @@ public class Player extends User {
 	public Player() {}
 	
 
-	public Player(String name, String surname,String birthDate, int age, int ratingElo, String title,
+	public Player(String name, String surname,Session session,String birthDate, int age, int ratingElo, String title,
 			String nationality) {
 
-		super(name, surname);
+		super(name, surname,session);
 		this.birthDate = birthDate;
 		this.age = age;
 		this.ratingElo = ratingElo;

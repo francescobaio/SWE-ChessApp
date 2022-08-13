@@ -3,25 +3,32 @@ package domain_model;
 import java.util.HashMap;
 import java.util.Map;
 
+public class Session implements AccountCreator,AccountRemover {
 
-
-public class Session {
-	
 	private Map<String, String[]> accounts = new HashMap<String, String[]>();
-	private Map<String, User> userMap = new HashMap<String, User>();
+	private Map<String, ChessPerson> userMap = new HashMap<String, ChessPerson>();
 	private UserFactory userFactory = new UserFactory();
 
-	public Map<String, User> getUserMap() {
+	public Map<String, ChessPerson> getUserMap() {
 		return new HashMap<>(userMap);
 	}
 
-	public void deleteAccount(String username) {
-
-		userMap.remove(username);
-		accounts.remove(username);
+	public void deleteAccount(String username,String password) throws IllegalArgumentException {
+		
+		if(accounts.containsKey(username)) {
+			if(accounts.get(username)[0].equals(password)) {
+				userMap.remove(username);
+				accounts.remove(username);			
+			}else {
+				throw new IllegalArgumentException("Wrong Password");
+			}
+			
+		}else {
+			throw new IllegalArgumentException("Wrong Username");
+		}
+	
 	}
-	
-	
+
 	public String typeParsing(UserType type) {
 
 		String tmp = null;
@@ -41,12 +48,12 @@ public class Session {
 		return tmp;
 	}
 
-	
-	public void createAccount(Object[] params, UserType type, String username, String password) throws IllegalArgumentException {
+	public void createAccount(Object[] params, UserType type, String username, String password)
+			throws IllegalArgumentException {
 
-		User account = userFactory.createActor(params, type);
+		ChessPerson account = userFactory.createActor(params, type);
 		String[] info = { password, typeParsing(type) };
-		if(accounts.containsKey(username)) {
+		if (accounts.containsKey(username)) {
 			throw new IllegalArgumentException("Username already exists.");
 		}
 		accounts.put(username, info);
@@ -54,9 +61,7 @@ public class Session {
 
 	}
 
-	
-
-	public User signin(String username, String password) throws IllegalArgumentException {
+	public ChessPerson signin(String username, String password) throws IllegalArgumentException {
 
 		if (accounts.containsKey(username)) {
 
@@ -75,7 +80,7 @@ public class Session {
 				}
 
 			} else {
-				
+
 				throw new IllegalArgumentException("Wrong Password.");
 			}
 
@@ -86,8 +91,5 @@ public class Session {
 		return null;
 
 	}
-	
-
-	
 
 }

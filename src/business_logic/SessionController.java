@@ -1,7 +1,7 @@
 package business_logic;
 
 import domain_model.Session;
-import domain_model.User;
+import domain_model.Person;
 import domain_model.UserType;
 
 public class SessionController {
@@ -19,7 +19,7 @@ public class SessionController {
 
 	}
 	
-	public User signin(String username, String password) throws IllegalArgumentException {
+	public Person signin(String username, String password) throws IllegalArgumentException {
 		
 		return session.signin(username, password);
 		

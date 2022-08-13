@@ -4,9 +4,9 @@ package domain_model;
 public class UserFactory {
 
 	
-	public User createActor(Object[] params,UserType type) {
+	public ChessPerson createActor(Object[] params,UserType type) {
 		
-		User account =  null;
+		ChessPerson account =  null;
 		if(type == UserType.Player) {
 			account = new Player();
 		}else if(type == UserType.Referee) {

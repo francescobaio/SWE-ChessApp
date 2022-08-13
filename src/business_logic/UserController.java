@@ -3,16 +3,16 @@ package business_logic;
 import java.util.ArrayList;
 
 import domain_model.Tournament;
-import domain_model.User;
+import domain_model.Person;
 import domain_model.UserType;
 
 
 public class UserController {
 
-	private User user;
+	private Person user;
 	private SessionController sc;
 
-	public UserController(User user,SessionController sc) {
+	public UserController(Person user,SessionController sc) {
 
 		this.user = user;
 		this.sc = sc;
@@ -48,7 +48,7 @@ public class UserController {
 
 	}
 
-	public User login(String username, String password) {
+	public Person login(String username, String password) {
 		
 		
 		try {

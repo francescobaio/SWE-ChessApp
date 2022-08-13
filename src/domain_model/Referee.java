@@ -1,14 +1,14 @@
 package domain_model;
 
-public class Referee extends User {
+public class Referee extends ChessPerson {
 
 	private Tournament activeTournament;
 	
 	public Referee() {}
 
-	public Referee(String name, String surname,Tournament activeTournament) {
+	public Referee(String name, String surname,Session session,Tournament activeTournament) {
 
-		super(name, surname);
+		super(name, surname,session);
 		this.activeTournament = activeTournament;
 
 	}
