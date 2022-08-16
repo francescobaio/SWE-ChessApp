@@ -91,12 +91,13 @@ public class Tournament {
 		this.maxPlayers = maxPlayers;
 	}
 
-	public Scoreboard getScoreboard() {
-		return scoreboard;
-	}
-
 	public Standings getStandings() {
 		return new Standings(standings);
+	}
+	
+	
+	public ArrayList<Player> getListOfPlayers(){
+		return new ArrayList<Player>(listOfPlayers);
 	}
 
 	public void addPlayer(Player p) throws Exception {
@@ -109,6 +110,22 @@ public class Tournament {
 	public void removePlayer(Player p) {
 		listOfPlayers.remove(p);
 	}
+	
+	
+	public void update() {
+		standings.updateStandings(new Scoreboard(scoreboard));
+	}
+	
+	public void uploadResults(String[] results) {
+		scoreboard.uploadResults(results, getListOfPlayers());
+	}
+	
+	public void publishNewRound() {
+		scoreboard.publishNewRound(getStandings());
+	}
+
+
+		
 
 	public void editInformation(String nameInformation, Object information) {
 

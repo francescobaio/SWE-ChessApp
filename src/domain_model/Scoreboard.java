@@ -24,6 +24,21 @@ public class Scoreboard {
 
 	}
 
+	public Scoreboard(Scoreboard s) {
+		numOfPlayers = s.numOfPlayers;
+		previousPairings = new HashMap<String, ArrayList<String>>(s.previousPairings);
+		previousColour = new HashMap<String, String>(s.previousColour);
+		eloVariations = new HashMap<String, Float>(s.eloVariations);
+		board = new String[((int) Math.ceil(numOfPlayers / 2)) + 1][4];
+
+		for (int i = 0; i < (int) Math.ceil(numOfPlayers / 2) + 1; i++) {
+			for (int j = 0; j < 4; j++) {
+				board[i][j] = s.board[i][j];
+			}
+		}
+
+	}
+
 	public void initialize(Standings standings) {
 
 		ArrayList<String> firstOpponent = new ArrayList<String>();
@@ -78,18 +93,14 @@ public class Scoreboard {
 		boolean found = false;
 		int k;
 		float tmp;
-		
-		
-		if(numOfPlayers%2 == 1) {
-			
-			board[(int) Math.ceil(numOfPlayers / 2)][3] = "1F-0F";
-			
-		}
-		
-			
-		
 
-		for (int i = 1; i < (int) Math.ceil(numOfPlayers / 2) + 1 - numOfPlayers % 2 ; i++) {
+		if (numOfPlayers % 2 == 1) {
+
+			board[(int) Math.ceil(numOfPlayers / 2)][3] = "1F-0F";
+
+		}
+
+		for (int i = 1; i < (int) Math.ceil(numOfPlayers / 2) + 1 - numOfPlayers % 2; i++) {
 			board[i][3] = results[i - 1];
 			for (int j = 0; j < numOfPlayers; j++) {
 				if (board[i][1].equals(players.get(j).getName() + " " + players.get(j).getSurname())) {
@@ -104,15 +115,15 @@ public class Scoreboard {
 							tmp = eloVariations.get(board[i][1]);
 							tmp += EloTable.getVariation(players.get(j).getRatingElo(), players.get(k).getRatingElo());
 							eloVariations.put(board[i][1], tmp);
-							
+
 							found = true;
 
 						}
 						k++;
 					}
-					
+
 					found = false;
-					
+
 					if (board[i][3].charAt(1) == '.') {
 						players.get(j).addDraw();
 					} else if (board[i][3].charAt(0) == '0') {
@@ -121,7 +132,7 @@ public class Scoreboard {
 						players.get(j).addWin();
 					}
 				} else if (board[i][2].equals(players.get(j).getName() + " " + players.get(j).getSurname())) {
-					
+
 					k = 0;
 					while (found == false) {
 						if ((players.get(k).getName() + " " + players.get(k).getSurname()).equals(board[i][1])) {
@@ -133,16 +144,14 @@ public class Scoreboard {
 							tmp = eloVariations.get(board[i][2]);
 							tmp += EloTable.getVariation(players.get(j).getRatingElo(), players.get(k).getRatingElo());
 							eloVariations.put(board[i][2], tmp);
-							
+
 							found = true;
 
 						}
 						k++;
 					}
-					
-					
+
 					found = false;
-					
 
 					if (board[i][3].charAt(1) == '.') {
 						players.get(j).addDraw();
@@ -325,14 +334,9 @@ public class Scoreboard {
 		}
 
 	}
-	
-	
-	
-	
+
 	public float getPlayerVariation(String name) {
 		return eloVariations.get(name);
 	}
-	
-
 
 }

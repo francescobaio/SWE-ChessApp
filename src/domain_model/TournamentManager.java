@@ -49,28 +49,5 @@ public class TournamentManager extends ChessPerson {
 	}
 	
 	
-	public void removePlayer(Tournament t,Player p) {
-		
-		t.removePlayer(p);
-		
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
