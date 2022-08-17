@@ -19,7 +19,11 @@ public class RefereeController {
 	}
 
 	public void publishNewRound() {
-		referee.publishNewRound();
+		try {
+			referee.publishNewRound();
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 }

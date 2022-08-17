@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Player extends ChessPerson {
 
-	private String birthDate;
 	private int age;
 	private int ratingElo;
 	private String title;
@@ -19,11 +18,10 @@ public class Player extends ChessPerson {
 	public Player() {}
 	
 
-	public Player(String name, String surname,TournamentDisplayer tournamentDisplayer,AccountRemover accountRemover,String birthDate, int age, int ratingElo, String title,
+	public Player(String name, String surname,TournamentDisplayer tournamentDisplayer,AccountRemover accountRemover, int ratingElo, int age,String title,
 			String nationality) {
 
 		super(name, surname,tournamentDisplayer,accountRemover);
-		this.birthDate = birthDate;
 		this.age = age;
 		this.ratingElo = ratingElo;
 		this.setTitle(title);
@@ -40,10 +38,6 @@ public class Player extends ChessPerson {
 			setK(10);
 		}
 
-	}
-
-	public String getBirthDate() {
-		return birthDate;
 	}
 
 	public int getRatingElo() {
@@ -109,11 +103,10 @@ public class Player extends ChessPerson {
 	public void setAttributes(Object[] params) {
 		
 		super.setAttributes(params);
-		birthDate = (String)params[4];
-		age = (int)params[5];
-		ratingElo = (int) params[6];
-		title = (String)params[7];
-		nationality = (String) params[8];
+		age = (int)params[4];
+		ratingElo = (int) params[5];
+		title = (String)params[6];
+		nationality = (String) params[7];
 		
 	}
 	

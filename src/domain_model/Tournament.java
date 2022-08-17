@@ -13,14 +13,13 @@ public class Tournament {
 	private int numOfRounds;
 	private String refereeName;
 	private String managerName;
-	private int maxPlayers;
 
 	private Scoreboard scoreboard;
 	private Standings standings;
 	private ArrayList<Player> listOfPlayers = new ArrayList<Player>();
 
 	public Tournament(String name, String province, String region, String startingDate, String endingDate,
-			String timeControl, int numOfRounds, String refereeName, String managerName, int maxPlayers) {
+			String timeControl, int numOfRounds, String refereeName, String managerNames) {
 		this.name = name;
 		this.province = province;
 		this.region = region;
@@ -30,7 +29,6 @@ public class Tournament {
 		this.numOfRounds = numOfRounds;
 		this.refereeName = refereeName;
 		this.managerName = managerName;
-		this.maxPlayers = maxPlayers;
 
 	}
 
@@ -44,7 +42,6 @@ public class Tournament {
 		numOfRounds = t.numOfRounds;
 		refereeName = t.refereeName;
 		managerName = t.managerName;
-		maxPlayers = t.maxPlayers;
 	}
 
 	public String getName() {
@@ -82,21 +79,17 @@ public class Tournament {
 	public String getManagerName() {
 		return managerName;
 	}
-
-	public int getMaxPlayers() {
-		return maxPlayers;
+	
+	public Scoreboard getScoreboard() {
+		return new Scoreboard(scoreboard);
 	}
 
-	public void setMaxPlayers(int maxPlayers) {
-		this.maxPlayers = maxPlayers;
-	}
 
 	public Standings getStandings() {
 		return new Standings(standings);
 	}
-	
-	
-	public ArrayList<Player> getListOfPlayers(){
+
+	public ArrayList<Player> getListOfPlayers() {
 		return new ArrayList<Player>(listOfPlayers);
 	}
 
@@ -110,22 +103,27 @@ public class Tournament {
 	public void removePlayer(Player p) {
 		listOfPlayers.remove(p);
 	}
-	
-	
-	public void update() {
+
+	public void updateStandings() {
 		standings.updateStandings(new Scoreboard(scoreboard));
+		if (standings.getCurrentRound() == numOfRounds) {
+			for (int i = 0; i < listOfPlayers.size(); i++) {
+				listOfPlayers.get(i).updateStats();
+			}
+		}
 	}
-	
+
 	public void uploadResults(String[] results) {
 		scoreboard.uploadResults(results, getListOfPlayers());
 	}
-	
-	public void publishNewRound() {
-		scoreboard.publishNewRound(getStandings());
+
+	public void publishNewRound() throws Exception {
+		if ((standings.getCurrentRound()-1) != numOfRounds) {
+			scoreboard.publishNewRound(getStandings());
+		}else {
+			throw new Exception("Tournament finished");
+		}
 	}
-
-
-		
 
 	public void editInformation(String nameInformation, Object information) {
 
@@ -146,8 +144,6 @@ public class Tournament {
 			numOfRounds = (int) information;
 		case "refereeName":
 			refereeName = (String) information;
-		case "maxPlayers":
-			maxPlayers = (int) information;
 		}
 
 	}
@@ -188,6 +184,12 @@ public class Tournament {
 
 	public float getPlayerScore(Player p) {
 		return standings.getPlayerScore(p.getName() + " " + p.getSurname());
+	}
+
+	public void updateStats() {
+		for (int i = 0; i < listOfPlayers.size(); i++) {
+
+		}
 	}
 
 }

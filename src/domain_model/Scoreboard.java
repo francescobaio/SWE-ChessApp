@@ -39,6 +39,17 @@ public class Scoreboard {
 
 	}
 
+	public String[][] getBoard() {
+		String[][] copyBoard = new String[(int) Math.ceil(numOfPlayers / 2) + 1][4];
+		for (int i = 0; i < ((int) Math.ceil(numOfPlayers / 2)) + 1; i++) {
+			for (int j = 0; j < 4; j++) {
+				copyBoard[i][j] = board[i][j];
+				System.out.println(copyBoard[i][j]);
+			}
+		}
+		return copyBoard;
+	}
+
 	public void initialize(Standings standings) {
 
 		ArrayList<String> firstOpponent = new ArrayList<String>();
@@ -108,9 +119,7 @@ public class Scoreboard {
 					while (found == false) {
 						if ((players.get(k).getName() + " " + players.get(k).getSurname()).equals(board[i][2])) {
 
-							tmp = eloVariations.get(board[i][2]);
-							tmp += EloTable.getVariation(players.get(k).getRatingElo(), players.get(j).getRatingElo());
-							eloVariations.put(board[i][2], tmp);
+							
 
 							tmp = eloVariations.get(board[i][1]);
 							tmp += EloTable.getVariation(players.get(j).getRatingElo(), players.get(k).getRatingElo());
@@ -137,9 +146,7 @@ public class Scoreboard {
 					while (found == false) {
 						if ((players.get(k).getName() + " " + players.get(k).getSurname()).equals(board[i][1])) {
 
-							tmp = eloVariations.get(board[i][1]);
-							tmp += EloTable.getVariation(players.get(k).getRatingElo(), players.get(j).getRatingElo());
-							eloVariations.put(board[i][1], tmp);
+							
 
 							tmp = eloVariations.get(board[i][2]);
 							tmp += EloTable.getVariation(players.get(j).getRatingElo(), players.get(k).getRatingElo());
@@ -211,7 +218,7 @@ public class Scoreboard {
 				copyPlayersNames.add(playersNames.get(0));
 				tmp = playersNames.remove(0);
 
-			} while (tmp[1].equals(playersNames.get(0)[1]));
+			} while (playersNames.size() != 0 && tmp[1].equals(playersNames.get(0)[1]));
 
 			if (copyPlayersNames.size() % 2 == 1 && copyPlayersNames.size() != 1) {
 				playersNames.add(0, copyPlayersNames.remove(copyPlayersNames.size() - 1));
@@ -254,10 +261,10 @@ public class Scoreboard {
 
 				int k = (int) Math.ceil(copyPlayersNames.size() / 2);
 
-				if (k != 1) {
+				if (copyPlayersNames.size() != 1) {
 
 					do {
-						if (!(previousPairings.get(copyPlayersNames.get(0)[3]).contains(copyPlayersNames.get(k)[3]))) {
+						if (!(previousPairings.get(copyPlayersNames.get(0)[3]).contains(copyPlayersNames.get(k)[3])) || playersNames.size() == 0) {
 							found = true;
 							previousPairings.get(copyPlayersNames.get(0)[3]).add(copyPlayersNames.get(k)[3]);
 							previousPairings.get(copyPlayersNames.get(k)[3]).add(copyPlayersNames.get(0)[3]);
@@ -328,7 +335,7 @@ public class Scoreboard {
 				}
 
 				found = false;
-
+				
 			}
 
 		}

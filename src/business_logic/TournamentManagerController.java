@@ -14,10 +14,10 @@ public class TournamentManagerController extends ChessPersonController {
 		this.tournamentManager = tournamentManager;
 	}
 
-	public void createTournament(String name, String province, String region, String startingDate, String endingDate,
-			String timeControl, int numOfRounds, String refereeName, String managerName, int maxPlayers) {
-		tournamentManager.createTournament(name, province, region, startingDate, endingDate, timeControl, numOfRounds,
-				refereeName, managerName, maxPlayers);
+	public Tournament createTournament(String name, String province, String region, String startingDate, String endingDate,
+			String timeControl, int numOfRounds, String refereeName, String managerName) {
+		return tournamentManager.createTournament(name, province, region, startingDate, endingDate, timeControl, numOfRounds,
+				refereeName, managerName);
 	}
 
 	public void removeTournament(Tournament t) {

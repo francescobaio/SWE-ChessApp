@@ -78,7 +78,7 @@ public class EloTable {
 		
 		int index = 0;
 		
-		while(diff > eloTable[index][0] ) {
+		while(diff >= eloTable[index][0] ) {
 			index++;
 		}
 		

@@ -11,6 +11,7 @@ public class Standings {
 	public Standings(int numOfPlayers) {
 
 		this.numOfPlayers = numOfPlayers;
+		this.currentRound = 0;
 		standings = new String[numOfPlayers + 1][8];
 		standings[0][0] = "POS";
 		standings[0][1] = "PTS";
@@ -22,6 +23,12 @@ public class Standings {
 		standings[0][7] = "ARO";
 
 	}
+	
+	public int getCurrentRound() {
+		return currentRound;
+	}
+	
+	
 
 	public void initialize(ArrayList<Player> players) {
 
@@ -34,12 +41,12 @@ public class Standings {
 			standings[i][2] = players.get(i - 1).getTitle();
 			standings[i][3] = players.get(i - 1).getName() + " " + players.get(i - 1).getSurname();
 			standings[i][4] = Integer.toString(players.get(i - 1).getRatingElo());
-			standings[i][5] = "-";
+			standings[i][5] = Integer.toString(players.get(i - 1).getRatingElo());
 			standings[i][6] = players.get(i - 1).getNationality();
 			standings[i][7] = "0";
 
 		}
-
+		
 	}
 	
 	
@@ -50,9 +57,11 @@ public class Standings {
 		for(int i=0;i<numOfPlayers + 1;i++) {
 			for(int j=0;j<8;j++) {
 				copyStandings[i][j] = standings[i][j];
+				System.out.println(copyStandings[i][j]);
 			}
 			
 		}
+		
 		return copyStandings;
 	}
 	
@@ -86,6 +95,8 @@ public class Standings {
 
 	public void updateStandings(Scoreboard scoreboard) {
 		
+
+		
 		for(int i=1;i < (int) Math.ceil(numOfPlayers/2)+ 1;i++) {
 			for(int j = 1;j < numOfPlayers + 1;j++) {
 				
@@ -93,6 +104,7 @@ public class Standings {
 				float aro = Float.parseFloat(standings[j][7]);
 				int opponentElo = 0;
 				int performance = Integer.parseInt(standings[j][5]);
+
 
 				
 				if(scoreboard.getElement(i,1).equals(standings[j][3])) {
@@ -125,7 +137,8 @@ public class Standings {
 						}
 						
 					}
-					
+					standings[j][5] = Integer.toString(performance);
+
 								
 		
 				}else if(scoreboard.getElement(i, 2).equals(standings[j][3])){
@@ -158,7 +171,8 @@ public class Standings {
 						}
 						
 					}	
-							
+					standings[j][5] = Integer.toString(performance);
+	
 			}
 			
 		}
@@ -166,10 +180,11 @@ public class Standings {
 		
 	}
 	
-	
-		sortStandings();
 		currentRound++;
-	
+		sortStandings();
+		for(int i=1;i < numOfPlayers +1;i++) {
+			standings[i][0] = Integer.toString(i);
+		}
 	}
 	
 	
@@ -180,7 +195,7 @@ public class Standings {
 		
 		for(int i=1;i<numOfPlayers + 1;i++) {
 			
-			criteria.add(new CriteriaStandings(Integer.parseInt(standings[i][0]),Float.parseFloat(standings[i][1]),Float.parseFloat(standings[i][7])));
+			criteria.add(new CriteriaStandings(Integer.parseInt(standings[i][0]),Float.parseFloat(standings[i][1]),Float.parseFloat(standings[i][7]),Integer.parseInt(standings[i][4])));
 				
 		}
 		
@@ -188,7 +203,7 @@ public class Standings {
 		String[][] sortedStandings = new String[numOfPlayers+1][8];
 		sortedStandings[0] = standings[0];
 		for(int i=1;i<numOfPlayers+1;i++) {
-			sortedStandings[i] = standings[criteria.get(i).getPos()];
+			sortedStandings[i] = standings[criteria.get(i-1).getPos()];
 		}
 		
 		standings = sortedStandings;

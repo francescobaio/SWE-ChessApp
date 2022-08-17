@@ -9,9 +9,9 @@ public class PlayerComparator implements Comparator<Player>{
 		if(p1.getRatingElo() == p2.getRatingElo()) {
 			return 0;
 		}else if(p1.getRatingElo() > p2.getRatingElo()) {
-			return 1;
-		}else {
 			return -1;
+		}else {
+			return 1;
 		}
 	}
 

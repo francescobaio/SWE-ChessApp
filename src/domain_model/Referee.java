@@ -32,14 +32,14 @@ public class Referee extends ChessPerson {
 	}
 
 	public void updateStandings() {
-		activeTournament.update();
+		activeTournament.updateStandings();
 	}
 
 	public void uploadResults(String[] results) {
 		activeTournament.uploadResults(results);
 	}
 	
-	public void publishNewRound() {
+	public void publishNewRound() throws Exception {
 		activeTournament.publishNewRound();
 	}
 	
