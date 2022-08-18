@@ -3,7 +3,7 @@ package domain_model;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Session implements AccountCreator,AccountRemover {
+public class Session implements AccountCreator, AccountRemover {
 
 	private Map<String, String[]> accounts = new HashMap<String, String[]>();
 	private Map<String, ChessPerson> userMap = new HashMap<String, ChessPerson>();
@@ -13,20 +13,24 @@ public class Session implements AccountCreator,AccountRemover {
 		return new HashMap<>(userMap);
 	}
 
-	public void deleteAccount(String username,String password) throws IllegalArgumentException {
-		
-		if(accounts.containsKey(username)) {
-			if(accounts.get(username)[0].equals(password)) {
+	public Map<String, String[]> getAccounts() {
+		return new HashMap<>(accounts);
+	}
+
+	public void deleteAccount(String username, String password) throws IllegalArgumentException {
+
+		if (accounts.containsKey(username)) {
+			if (accounts.get(username)[0].equals(password)) {
 				userMap.remove(username);
-				accounts.remove(username);			
-			}else {
+				accounts.remove(username);
+			} else {
 				throw new IllegalArgumentException("Wrong Password");
 			}
-			
-		}else {
+
+		} else {
 			throw new IllegalArgumentException("Wrong Username");
 		}
-	
+
 	}
 
 	public String typeParsing(UserType type) {

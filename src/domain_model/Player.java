@@ -13,15 +13,14 @@ public class Player extends ChessPerson {
 	private ArrayList<Tournament> subscribedTournaments = new ArrayList<Tournament>();
 	private Tournament playingTournament;
 	private Stats playerStats;
-	
-	
-	public Player() {}
-	
 
-	public Player(String name, String surname,TournamentDisplayer tournamentDisplayer,AccountRemover accountRemover, int ratingElo, int age,String title,
-			String nationality) {
+	public Player() {
+	}
 
-		super(name, surname,tournamentDisplayer,accountRemover);
+	public Player(String name, String surname, TournamentDisplayer tournamentDisplayer, AccountRemover accountRemover,
+			int ratingElo, int age, String title, String nationality) {
+
+		super(name, surname, tournamentDisplayer, accountRemover);
 		this.age = age;
 		this.ratingElo = ratingElo;
 		this.setTitle(title);
@@ -95,22 +94,20 @@ public class Player extends ChessPerson {
 	public void setPlayingTournament(Tournament playingTournament) {
 		this.playingTournament = playingTournament;
 	}
-	
-	
-	
-	
-	
-	public void setAttributes(Object[] params) {
-		
-		super.setAttributes(params);
-		age = (int)params[4];
-		ratingElo = (int) params[5];
-		title = (String)params[6];
-		nationality = (String) params[7];
-		
+
+	public ArrayList<Tournament> getSubscribedTournaments() {
+		return new ArrayList<Tournament>(subscribedTournaments);
 	}
-	
-		
+
+	public void setAttributes(Object[] params) {
+
+		super.setAttributes(params);
+		age = (int) params[4];
+		ratingElo = (int) params[5];
+		title = (String) params[6];
+		nationality = (String) params[7];
+
+	}
 
 	public void updateStats() {
 
@@ -123,17 +120,14 @@ public class Player extends ChessPerson {
 
 		ratingElo += (playerScore - playerVariation) * k;
 		title = computeTitle(ratingElo);
-		
-		if(ratingElo < playerStats.getLowestRatingElo()) {
+
+		if (ratingElo < playerStats.getLowestRatingElo()) {
 			playerStats.setLowestRatingElo(ratingElo);
-		}else if (ratingElo > playerStats.getHighestRatingElo()) {
+		} else if (ratingElo > playerStats.getHighestRatingElo()) {
 			playerStats.setHighestRatingElo(ratingElo);
 		}
-		
-	
+
 	}
-	
-	
 
 	public String computeTitle(int ratingElo) {
 
@@ -160,40 +154,33 @@ public class Player extends ChessPerson {
 		} else if (ratingElo >= 2300 && ratingElo < 2400) {
 			category = "FM";
 		} else if (ratingElo >= 2400 && ratingElo < 2500) {
-			
+
 			category = "IM";
-			
-			
+
 		} else {
-			
+
 			category = "GM";
-			
+
 		}
-		
+
 		return category;
 
 	}
-	
-	
-	
-	
-	public void subscribeTournament(Tournament t){
+
+	public void subscribeTournament(Tournament t) {
 		subscribedTournaments.add(t);
 	}
-	
-	
+
 	public void unsubscribeTournament(Tournament t) {
 		subscribedTournaments.remove(t);
 	}
-	
+
 	public Stats getStatistics() {
 		return new Stats(playerStats);
 	}
-	
+
 	public Tournament getCurrentTournament() {
 		return new Tournament(playingTournament);
 	}
-	
-	
 
 }

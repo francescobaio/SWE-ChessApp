@@ -4,7 +4,8 @@ public class User extends Person {
 
 	private AccountCreator accountCreator;
 
-	public User(AccountCreator accountCreator) {
+	public User(String name, String surname, TournamentDisplayer tournamentDisplayer,AccountCreator accountCreator) {
+		super(name,surname,tournamentDisplayer);
 		this.accountCreator = accountCreator;
 	}
 

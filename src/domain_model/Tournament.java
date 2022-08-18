@@ -128,22 +128,30 @@ public class Tournament {
 	public void editInformation(String nameInformation, Object information) {
 
 		switch (nameInformation) {
-		case "name":
-			name = (String) information;
-		case "province":
-			province = (String) information;
-		case "region":
-			region = (String) information;
-		case "startingDate":
-			startingDate = (String) information;
-		case "endingDate":
-			endingDate = (String) information;
-		case "timeControl":
-			timeControl = (String) information;
-		case "numOfRounds":
-			numOfRounds = (int) information;
-		case "refereeName":
-			refereeName = (String) information;
+			case "name":
+				name = (String) information;
+				break;
+			case "province":
+				province = (String) information;
+				break;
+			case "region":
+				region = (String) information;
+				break;
+			case "startingDate":
+				startingDate = (String) information;
+				break;
+			case "endingDate":
+				endingDate = (String) information;
+				break;
+			case "timeControl":
+				timeControl = (String) information;
+				break;
+			case "numOfRounds":
+				numOfRounds = (int) information;
+				break;
+			case "refereeName":
+				refereeName = (String) information;
+				break;
 		}
 
 	}
