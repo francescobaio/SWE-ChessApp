@@ -83,10 +83,10 @@ public class EloTable {
 		}
 		
 		if(isNegative) {
-			return eloTable[index-1][2];
+			return eloTable[index - 1][2];
 			
 		}else {
-			return eloTable[index-1][1];
+			return eloTable[index - 1][1];
 		}
 	}
 		

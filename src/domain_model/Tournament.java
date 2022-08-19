@@ -159,7 +159,7 @@ public class Tournament {
 	public void start() {
 
 		standings = new Standings(listOfPlayers.size());
-		standings.initialize(listOfPlayers);
+		standings.initialize(getListOfPlayers());
 
 		scoreboard = new Scoreboard(listOfPlayers.size());
 		scoreboard.initialize(getStandings());

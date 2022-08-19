@@ -97,7 +97,7 @@ public class Standings {
 		
 
 		
-		for(int i=1;i < (int) Math.ceil(numOfPlayers/2)+ 1;i++) {
+		for(int i=1;i < (int) Math.ceil((double)numOfPlayers/2)+ 1;i++) {
 			for(int j = 1;j < numOfPlayers + 1;j++) {
 				
 				float tmp = Float.parseFloat(standings[j][1]);
@@ -123,7 +123,7 @@ public class Standings {
 					if(scoreboard.getElement(i, 3).charAt(1) == '.') {
 						tmp += 0.5;
 						standings[j][1] = Float.toString(tmp);
-						performance = Math.round((performance * currentRound + opponentElo)/(currentRound+1));
+						performance = Math.round((float)(performance * currentRound + opponentElo)/(currentRound+1));
 								
 					}else {
 						
@@ -131,9 +131,9 @@ public class Standings {
 						standings[j][1] = Float.toString(tmp);
 						
 						if(scoreboard.getElement(i,3).charAt(0) == '1') {
-							performance = Math.round((performance * currentRound + opponentElo + 400)/(currentRound+1));
+							performance = Math.round((float)(performance * currentRound + opponentElo + 400)/(currentRound+1));
 						}else {
-							performance = Math.round((performance * currentRound + opponentElo - 400)/(currentRound+1));
+							performance = Math.round((float)(performance * currentRound + opponentElo - 400)/(currentRound+1));
 						}
 						
 					}
@@ -158,16 +158,16 @@ public class Standings {
 					if(scoreboard.getElement(i, 3).charAt(1) == '.') {
 						tmp += 0.5;
 						standings[j][1] = Float.toString(tmp);
-						performance = Math.round((performance * currentRound + opponentElo)/(currentRound+1));
+						performance = Math.round((float)(performance * currentRound + opponentElo)/(currentRound+1));
 								
 					}else {
 						
 						tmp +=  Float.parseFloat(scoreboard.getElement(i, 3).substring(2));
 						standings[j][1] = Float.toString(tmp);	
 						if(scoreboard.getElement(i,3).charAt(2) == '1') {
-							performance = Math.round((performance * currentRound + opponentElo + 400)/(currentRound+1));
+							performance = Math.round((float)(performance * currentRound + opponentElo + 400)/(currentRound+1));
 						}else {
-							performance = Math.round((performance * currentRound + opponentElo - 400)/(currentRound+1));
+							performance = Math.round((float)(performance * currentRound + opponentElo - 400)/(currentRound+1));
 						}
 						
 					}	

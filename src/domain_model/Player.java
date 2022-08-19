@@ -119,50 +119,54 @@ public class Player extends ChessPerson {
 		float playerVariation = playingTournament.getPlayerVariation(this);
 
 		ratingElo += (playerScore - playerVariation) * k;
-		title = computeTitle(ratingElo);
 
 		if (ratingElo < playerStats.getLowestRatingElo()) {
 			playerStats.setLowestRatingElo(ratingElo);
 		} else if (ratingElo > playerStats.getHighestRatingElo()) {
 			playerStats.setHighestRatingElo(ratingElo);
 		}
+		title = computeTitle(playerStats.getHighestRatingElo());
 
 	}
 
-	public String computeTitle(int ratingElo) {
+	public String computeTitle(int Elo) {
 
-		String category;
-		if (ratingElo < 1500) {
+		String category = title;
+
+		if (Elo < 1500 && title != "3N" && title != "2N" && title != "1N" && title != "CM" && title != "M"
+				&& title != "FM" && title != "IM" && title != "GM") {
 
 			category = "NC";
 
-		} else if (ratingElo >= 1500 && ratingElo < 1600) {
+		} else if (Elo >= 1500 && Elo < 1600 && title != "2N" && title != "1N" && title != "CM" && title != "M"
+				&& title != "FM" && title != "IM" && title != "GM") {
 
 			category = "3N";
 
-		} else if (ratingElo >= 1600 && ratingElo < 1800) {
+		} else if (Elo >= 1600 && Elo < 1800 && title != "1N" && title != "CM" && title != "M" && title != "FM"
+				&& title != "IM" && title != "GM") {
 
 			category = "2N";
 
-		} else if (ratingElo >= 1800 && ratingElo < 2000) {
+		} else if (Elo >= 1800 && Elo < 2000 && title != "CM" && title != "M" && title != "FM" && title != "IM"
+				&& title != "GM") {
 			category = "1N";
-		} else if (ratingElo >= 2000 && ratingElo < 2200) {
+		} else if (Elo >= 2000 && Elo < 2200 && title != "M" && title != "FM" && title != "IM" && title != "GM") {
 			category = "CM";
-		} else if (ratingElo >= 2200 && ratingElo < 2300) {
+		} else if (Elo >= 2200 && Elo < 2300 && title != "FM" && title != "IM" && title != "GM") {
 			category = "M";
 
-		} else if (ratingElo >= 2300 && ratingElo < 2400) {
+		} else if (Elo >= 2300 && Elo < 2400 && title != "IM" && title != "GM") {
 			category = "FM";
-		} else if (ratingElo >= 2400 && ratingElo < 2500) {
+		} else if (Elo >= 2400 && Elo < 2500 && title != "GM") {
 
 			category = "IM";
 
-		} else {
+		} else if (Elo >= 2500) {
 
 			category = "GM";
 
 		}
-
 		return category;
 
 	}

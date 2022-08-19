@@ -16,7 +16,7 @@ public class Scoreboard {
 	public Scoreboard(int numOfPlayers) {
 
 		this.numOfPlayers = numOfPlayers;
-		board = new String[((int) Math.ceil(numOfPlayers / 2)) + 1][4];
+		board = new String[((int) Math.ceil((double) numOfPlayers / 2)) + 1][4];
 		board[0][0] = "Table";
 		board[0][1] = "White";
 		board[0][2] = "Black";
@@ -29,9 +29,9 @@ public class Scoreboard {
 		previousPairings = new HashMap<String, ArrayList<String>>(s.previousPairings);
 		previousColour = new HashMap<String, String>(s.previousColour);
 		eloVariations = new HashMap<String, Float>(s.eloVariations);
-		board = new String[((int) Math.ceil(numOfPlayers / 2)) + 1][4];
+		board = new String[((int) Math.ceil((double) numOfPlayers / 2)) + 1][4];
 
-		for (int i = 0; i < (int) Math.ceil(numOfPlayers / 2) + 1; i++) {
+		for (int i = 0; i < (int) Math.ceil((double) numOfPlayers / 2) + 1; i++) {
 			for (int j = 0; j < 4; j++) {
 				board[i][j] = s.board[i][j];
 			}
@@ -40,8 +40,8 @@ public class Scoreboard {
 	}
 
 	public String[][] getBoard() {
-		String[][] copyBoard = new String[(int) Math.ceil(numOfPlayers / 2) + 1][4];
-		for (int i = 0; i < ((int) Math.ceil(numOfPlayers / 2)) + 1; i++) {
+		String[][] copyBoard = new String[(int) Math.ceil((double) numOfPlayers / 2) + 1][4];
+		for (int i = 0; i < ((int) Math.ceil((double) numOfPlayers / 2)) + 1; i++) {
 			for (int j = 0; j < 4; j++) {
 				copyBoard[i][j] = board[i][j];
 				System.out.println(copyBoard[i][j]);
@@ -54,7 +54,7 @@ public class Scoreboard {
 
 		ArrayList<String> firstOpponent = new ArrayList<String>();
 
-		for (int i = 1; i < (int) Math.ceil(numOfPlayers / 2) + 1 - numOfPlayers % 2; i++) {
+		for (int i = 1; i < ((int) Math.ceil((double) numOfPlayers / 2)) + 1 - numOfPlayers % 2; i++) {
 
 			board[i][0] = Integer.toString(i);
 			board[i][3] = "-";
@@ -62,16 +62,16 @@ public class Scoreboard {
 			if (i % 2 == 1) {
 
 				board[i][1] = standings.getElement(i, 3);
-				board[i][2] = standings.getElement((int) Math.floor(numOfPlayers / 2) + i, 3);
+				board[i][2] = standings.getElement((int) Math.floor((double)numOfPlayers / 2) + i, 3);
 				previousColour.put(standings.getElement(i, 3), "WHITE");
-				previousColour.put(standings.getElement((int) Math.floor(numOfPlayers / 2) + i, 3), "BLACK");
+				previousColour.put(standings.getElement((int) Math.floor((double)numOfPlayers / 2) + i, 3), "BLACK");
 
 			} else {
 
-				board[i][1] = standings.getElement((int) Math.floor(numOfPlayers / 2) + i, 3);
+				board[i][1] = standings.getElement((int) Math.floor((double)numOfPlayers / 2) + i, 3);
 				board[i][2] = standings.getElement(i, 3);
 				previousColour.put(standings.getElement(i, 3), "BLACK");
-				previousColour.put(standings.getElement((int) Math.floor(numOfPlayers / 2) + i, 3), "WHITE");
+				previousColour.put(standings.getElement((int) Math.floor((double)numOfPlayers / 2) + i, 3), "WHITE");
 
 			}
 
@@ -86,11 +86,13 @@ public class Scoreboard {
 
 		if (numOfPlayers % 2 == 1) {
 
-			board[(int) Math.ceil(numOfPlayers / 2)][0] = Integer.toString((int) Math.ceil(numOfPlayers / 2));
-			board[(int) Math.ceil(numOfPlayers / 2)][1] = standings.getElement(numOfPlayers - 1, 3);
-			board[(int) Math.ceil(numOfPlayers / 2)][2] = "_BYE_";
-			board[(int) Math.ceil(numOfPlayers / 2)][3] = "-";
-			previousColour.put(standings.getElement(numOfPlayers - 1, 3), "WHITE");
+			board[(int) Math.ceil((double)numOfPlayers / 2)][0] = Integer.toString((int) Math.ceil((double)numOfPlayers / 2));
+			board[(int) Math.ceil((double)numOfPlayers / 2)][1] = standings.getElement(numOfPlayers, 3);
+			board[(int) Math.ceil((double)numOfPlayers / 2)][2] = "_BYE_";
+			board[(int) Math.ceil((double)numOfPlayers / 2)][3] = "-";
+			previousColour.put(standings.getElement(numOfPlayers, 3), "WHITE");
+			firstOpponent.add("_BYE_");
+			previousPairings.put(standings.getElement(numOfPlayers,3), new ArrayList<String>(firstOpponent));
 		}
 
 		for (int i = 1; i < numOfPlayers + 1; i++) {
@@ -107,11 +109,11 @@ public class Scoreboard {
 
 		if (numOfPlayers % 2 == 1) {
 
-			board[(int) Math.ceil(numOfPlayers / 2)][3] = "1F-0F";
+			board[(int) Math.ceil((double)numOfPlayers / 2)][3] = "1F-0F";
 
 		}
 
-		for (int i = 1; i < (int) Math.ceil(numOfPlayers / 2) + 1 - numOfPlayers % 2; i++) {
+		for (int i = 1; i < (int) Math.ceil((double)numOfPlayers / 2) + 1 - numOfPlayers % 2; i++) {
 			board[i][3] = results[i - 1];
 			for (int j = 0; j < numOfPlayers; j++) {
 				if (board[i][1].equals(players.get(j).getName() + " " + players.get(j).getSurname())) {
@@ -199,9 +201,9 @@ public class Scoreboard {
 			while (found == false) {
 				if (!(previousPairings.get(playersNames.get(m)[3]).contains("_BYE_"))) {
 					found = true;
-					board[(int) Math.ceil(numOfPlayers / 2)][1] = playersNames.get(m)[3];
-					board[(int) Math.ceil(numOfPlayers / 2)][2] = "_BYE_";
-					board[(int) Math.ceil(numOfPlayers / 2)][3] = "-";
+					board[(int) Math.ceil((double)numOfPlayers / 2)][1] = playersNames.get(m)[3];
+					board[(int) Math.ceil((double)numOfPlayers / 2)][2] = "_BYE_";
+					board[(int) Math.ceil((double)numOfPlayers / 2)][3] = "-";
 					previousPairings.get(playersNames.get(m)[3]).add("_BYE_");
 					playersNames.remove(m);
 				}
@@ -259,7 +261,7 @@ public class Scoreboard {
 
 			while (copyPlayersNames.size() != 0) {
 
-				int k = (int) Math.ceil(copyPlayersNames.size() / 2);
+				int k = (int) Math.ceil((double)copyPlayersNames.size() / 2);
 
 				if (copyPlayersNames.size() != 1) {
 
@@ -296,7 +298,7 @@ public class Scoreboard {
 							k++;
 						}
 
-					} while (found == false && k != (int) Math.ceil(copyPlayersNames.size() / 2));
+					} while (found == false && k != (int) Math.ceil((double)copyPlayersNames.size() / 2));
 
 				}
 

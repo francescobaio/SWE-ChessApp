@@ -14,7 +14,8 @@ import domain_model.TournamentManager;
 @SelectClasses({
 	SessionTest.class,
 	PlayerTest.class,
-	TournamentManagerTest.class
+	TournamentManagerTest.class,
+	RefereeTest.class
 })
 
 

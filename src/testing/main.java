@@ -21,7 +21,6 @@ public class main {
 	    Player p3 = new Player("Ivano","Fioravanti",tournamentCatalog,accountRemover,1780,61,"2N","ITA");
 	    Player p4 = new Player("Filippo","Melchiorre",tournamentCatalog,accountRemover,1675,16,"2N","ITA");
 	    Player p5 = new Player("Andrea","Fiore",tournamentCatalog,accountRemover,1619,29,"2N","ITA");
-	    Player p6 = new Player("Massimo","Bianchini",tournamentCatalog,accountRemover,1562,70,"3N","ITA");
 	    Player p7 = new Player("Filippo","Cavoli",tournamentCatalog,accountRemover,1440,14,"NC","ITA");
 	    Player p8 = new Player("Stefano","Cavoli",tournamentCatalog,accountRemover,1337,18,"NC","ITA");
 	    Player p9 = new Player("Mario","Giovanzanti",tournamentCatalog,accountRemover,1368,65,"3N","ITA");
@@ -40,7 +39,6 @@ public class main {
 	    t.addPlayer(p3);
 	    t.addPlayer(p4);
 	    t.addPlayer(p5); 
-	    t.addPlayer(p6);
 	    t.addPlayer(p7);
 	    t.addPlayer(p8);
 	    t.addPlayer(p9);
@@ -57,7 +55,6 @@ public class main {
 	    p3.subscribeTournament(t);
 	    p4.subscribeTournament(t);
 	    p5.subscribeTournament(t);
-	    p6.subscribeTournament(t);
 	    p7.subscribeTournament(t);
 	    p8.subscribeTournament(t);
 	    p9.subscribeTournament(t);
@@ -68,6 +65,8 @@ public class main {
 	    p14.subscribeTournament(t);
 	    p15.subscribeTournament(t);
 	    p16.subscribeTournament(t);
+	    
+	    System.out.println(t.getListOfPlayers().get(0).getRatingElo());
 
 	    
 	    referee.startTournament();
@@ -127,18 +126,7 @@ public class main {
 	    System.out.println(t.getPlayerVariation(p13));
 	    System.out.println("ciao");
 	    
-	    System.out.println(p6.getStatistics().getHighestRatingElo());
-	    System.out.println(p6.getStatistics().getLastPerformance());
-	    System.out.println(p6.getStatistics().getLowestRatingElo());
-	    System.out.println(p6.getStatistics().getNumOfDefeats());
-	    System.out.println(p6.getStatistics().getNumOfDraws());
-	    System.out.println(p6.getStatistics().getNumOfTournaments());
-	    System.out.println(p6.getStatistics().getNumOfGames());
-	    System.out.println(p6.getStatistics().getNumOfWins());
-	    System.out.println(p6.getRatingElo());
-	    System.out.println(p6.getK());
-
-	     
+	   
 
 
 
