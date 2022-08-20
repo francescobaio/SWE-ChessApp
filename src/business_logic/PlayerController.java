@@ -33,7 +33,12 @@ public class PlayerController extends ChessPersonController {
 	}
 
 	public Tournament showCurrentTournament() {
-		return player.getCurrentTournament();
+		try {
+			return player.getCurrentTournament();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
 	}
 
 }

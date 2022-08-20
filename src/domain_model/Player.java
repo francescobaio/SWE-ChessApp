@@ -11,7 +11,7 @@ public class Player extends ChessPerson {
 	private String nationality;
 
 	private ArrayList<Tournament> subscribedTournaments = new ArrayList<Tournament>();
-	private Tournament playingTournament;
+	private Tournament playingTournament = null;
 	private Stats playerStats;
 
 	public Player() {
@@ -126,6 +126,7 @@ public class Player extends ChessPerson {
 			playerStats.setHighestRatingElo(ratingElo);
 		}
 		title = computeTitle(playerStats.getHighestRatingElo());
+		playingTournament = null;
 
 	}
 
@@ -183,8 +184,12 @@ public class Player extends ChessPerson {
 		return new Stats(playerStats);
 	}
 
-	public Tournament getCurrentTournament() {
-		return new Tournament(playingTournament);
+	public Tournament getCurrentTournament() throws Exception {
+		if (playingTournament != null) {
+			return new Tournament(playingTournament);
+		} else {
+			throw new Exception("Player isn't playing any tournament");
+		}
 	}
 
 }

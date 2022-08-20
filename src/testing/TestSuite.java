@@ -22,3 +22,32 @@ import domain_model.TournamentManager;
 
 public class TestSuite {
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
