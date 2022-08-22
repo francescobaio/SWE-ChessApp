@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Scoreboard {
+ public class Scoreboard {
 
 	private int numOfPlayers;
 	private String[][] board;

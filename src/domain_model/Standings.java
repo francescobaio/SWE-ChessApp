@@ -2,7 +2,7 @@ package domain_model;
 
 import java.util.ArrayList;
 
-public class Standings {
+ public class Standings {
 
 	private int numOfPlayers;
 	private String[][] standings;
@@ -195,7 +195,8 @@ public class Standings {
 		
 		for(int i=1;i<numOfPlayers + 1;i++) {
 			
-			criteria.add(new CriteriaStandings(Integer.parseInt(standings[i][0]),Float.parseFloat(standings[i][1]),Float.parseFloat(standings[i][7]),Integer.parseInt(standings[i][4])));
+			criteria.add(new CriteriaStandings(Integer.parseInt(standings[i][0]),Float.parseFloat(standings[i][1]),
+					Float.parseFloat(standings[i][7]),Integer.parseInt(standings[i][4])));
 				
 		}
 		

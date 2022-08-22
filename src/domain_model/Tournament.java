@@ -2,7 +2,7 @@ package domain_model;
 
 import java.util.ArrayList;
 
-public class Tournament {
+ public class Tournament {
 
 	private String name;
 	private String province;
@@ -125,6 +125,21 @@ public class Tournament {
 		}
 	}
 
+	
+	public void start() {
+
+		standings = new Standings(listOfPlayers.size());
+		standings.initialize(getListOfPlayers());
+
+		scoreboard = new Scoreboard(listOfPlayers.size());
+		scoreboard.initialize(getStandings());
+
+		for (int i = 0; i < listOfPlayers.size(); i++) {
+			listOfPlayers.get(i).setPlayingTournament(this);
+		}
+
+	}
+
 	public void editInformation(String nameInformation, Object information) {
 
 		switch (nameInformation) {
@@ -152,20 +167,6 @@ public class Tournament {
 			case "refereeName":
 				refereeName = (String) information;
 				break;
-		}
-
-	}
-
-	public void start() {
-
-		standings = new Standings(listOfPlayers.size());
-		standings.initialize(getListOfPlayers());
-
-		scoreboard = new Scoreboard(listOfPlayers.size());
-		scoreboard.initialize(getStandings());
-
-		for (int i = 0; i < listOfPlayers.size(); i++) {
-			listOfPlayers.get(i).setPlayingTournament(this);
 		}
 
 	}

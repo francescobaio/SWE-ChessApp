@@ -44,7 +44,7 @@ import org.junit.jupiter.api.Test;
 		userController.signUp(userParams,UserType.Player,"marietto01", "BobbyFischer21");
 		assertNotNull(session.getUserMap().get("marietto01"));
 		assertNotNull(session.getAccounts().get("marietto01"));
-		assertEquals("BobbyFischer21",session.getAccounts().get("marietto01")[0]);
+		assertEquals("BobbyFischer21",session.getAccounts().get("marietto01"));
 		
 		Player p = (Player) userController.login("marietto01", "BobbyFischer21");
 		playerController  = new PlayerController(p);
@@ -65,7 +65,7 @@ import org.junit.jupiter.api.Test;
 		userController.signUp(userParams,UserType.TournamentManager,"erminio39", "GarryKasparov82");
 		assertNotNull(session.getUserMap().get("erminio39"));
 		assertNotNull(session.getAccounts().get("erminio39"));
-		assertEquals("GarryKasparov82",session.getAccounts().get("erminio39")[0]);
+		assertEquals("GarryKasparov82",session.getAccounts().get("erminio39"));
 		
 		TournamentManager m = (TournamentManager) userController.login("erminio39", "GarryKasparov82");
 		tournamentManagerController  = new TournamentManagerController(m);
@@ -87,7 +87,7 @@ import org.junit.jupiter.api.Test;
 		userController.signUp(userParams,UserType.Referee,"fabrizio65", "MagnusCarlsen57");
 		assertNotNull(session.getUserMap().get("fabrizio65"));
 		assertNotNull(session.getAccounts().get("fabrizio65"));
-		assertEquals("MagnusCarlsen57",session.getAccounts().get("fabrizio65")[0]);
+		assertEquals("MagnusCarlsen57",session.getAccounts().get("fabrizio65"));
 		
 		Referee r = (Referee) userController.login("fabrizio65", "MagnusCarlsen57");
 		refereeController  = new RefereeController(r);

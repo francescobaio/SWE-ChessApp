@@ -2,11 +2,23 @@ package domain_model;
 
 import java.util.ArrayList;
 
-public class TournamentManager extends ChessPerson {
+ public class TournamentManager extends ChessPerson {
 
 	private String phoneNumber;
 
 	private ManagerTournamentCatalog managerCatalog;
+	
+	
+	public Tournament createTournament(String name, String province, String region, String startingDate, String endingDate,
+			String timeControl, int numOfRounds, String refereeName, String managerName) {
+
+		Tournament t = new Tournament(name, province, region, startingDate, endingDate, timeControl, numOfRounds,
+				refereeName, this.getName());
+		managerCatalog.addTournament(t);
+		return t;
+
+	}
+
 
 	public TournamentManager() {}
 
@@ -26,16 +38,7 @@ public class TournamentManager extends ChessPerson {
 		return managerCatalog;
 	}
 
-	public Tournament createTournament(String name, String province, String region, String startingDate, String endingDate,
-			String timeControl, int numOfRounds, String refereeName, String managerName) {
-
-		Tournament t = new Tournament(name, province, region, startingDate, endingDate, timeControl, numOfRounds,
-				refereeName, this.getName());
-		managerCatalog.addTournament(t);
-		return t;
-
-	}
-
+	
 	public void removeTournament(Tournament t) {
 		managerCatalog.removeTournament(t);
 	}

@@ -2,7 +2,7 @@ package domain_model;
 
 import java.util.ArrayList;
 
-public class Player extends ChessPerson {
+ public class Player extends ChessPerson {
 
 	private int age;
 	private int ratingElo;
