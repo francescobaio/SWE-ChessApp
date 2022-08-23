@@ -49,6 +49,7 @@ public class PlayerTest {
 		playerController.subscribeTournament(tournament);
 		refereeController.startTournament();
 		assertNotNull(playerController.showCurrentTournament());
+		tournament.stopTournament();
 		playerController.unsubscribeTournament(tournament);
 
 	}

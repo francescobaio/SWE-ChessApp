@@ -18,6 +18,11 @@ public class Referee extends ChessPerson {
 		this.title = title;
 
 	}
+	
+	public Tournament getActiveTournament() {
+		return new Tournament(activeTournament);
+	}
+	
 
 	public void setAttributes(Object[] params) {
 

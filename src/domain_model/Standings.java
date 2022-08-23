@@ -85,6 +85,7 @@ import java.util.ArrayList;
 	public Standings(Standings s) {
 
 		numOfPlayers = s.numOfPlayers;
+		currentRound = s.currentRound;
 		standings = new String[numOfPlayers + 1][8];
 		for (int i = 0; i < numOfPlayers + 1; i++) {
 			for (int j = 0; j < 8; j++) {

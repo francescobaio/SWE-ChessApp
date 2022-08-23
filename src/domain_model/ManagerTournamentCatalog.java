@@ -13,7 +13,7 @@ public class ManagerTournamentCatalog extends Observable {
 	}
 
 	public ArrayList<Tournament> getManagerTournaments() {
-		return managerTournaments;
+		return new ArrayList<Tournament>(managerTournaments);
 	}
 
 	public void addTournament(Tournament t) {

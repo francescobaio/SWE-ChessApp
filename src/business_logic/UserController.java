@@ -6,7 +6,7 @@ import domain_model.ChessPerson;
 import domain_model.User;
 import domain_model.UserType;
 
-public class UserController extends PersonController {
+ public class UserController extends PersonController {
 
 	private User user;
 
@@ -42,4 +42,8 @@ public class UserController extends PersonController {
 
 	}
 
-}
+  }
+
+ 
+ 
+ 

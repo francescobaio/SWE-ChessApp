@@ -46,7 +46,7 @@ import org.junit.jupiter.api.Test;
 		assertNotNull(session.getAccounts().get("marietto01"));
 		assertEquals("BobbyFischer21",session.getAccounts().get("marietto01"));
 		
-		Player p = (Player) userController.login("marietto01", "BobbyFischer21");
+		Player p =  (Player) userController.login("marietto01", "BobbyFischer21");
 		playerController  = new PlayerController(p);
 		assertNotNull(p);
 		

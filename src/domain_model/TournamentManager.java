@@ -9,14 +9,8 @@ import java.util.ArrayList;
 	private ManagerTournamentCatalog managerCatalog;
 	
 	
-	public Tournament createTournament(String name, String province, String region, String startingDate, String endingDate,
-			String timeControl, int numOfRounds, String refereeName, String managerName) {
-
-		Tournament t = new Tournament(name, province, region, startingDate, endingDate, timeControl, numOfRounds,
-				refereeName, this.getName());
-		managerCatalog.addTournament(t);
-		return t;
-
+	public void addTournament(Tournament tournament) {
+		managerCatalog.addTournament(tournament);
 	}
 
 
@@ -32,10 +26,6 @@ import java.util.ArrayList;
 
 	public String getPhoneNumber() {
 		return phoneNumber;
-	}
-
-	public ManagerTournamentCatalog getManagerCatalog() {
-		return managerCatalog;
 	}
 
 	

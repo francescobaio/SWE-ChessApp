@@ -2,7 +2,7 @@ package domain_model;
 
 import java.util.ArrayList;
 
- public class Tournament {
+  public class Tournament {
 
 	private String name;
 	private String province;
@@ -13,6 +13,7 @@ import java.util.ArrayList;
 	private int numOfRounds;
 	private String refereeName;
 	private String managerName;
+	private boolean started = false;
 
 	private Scoreboard scoreboard;
 	private Standings standings;
@@ -42,6 +43,10 @@ import java.util.ArrayList;
 		numOfRounds = t.numOfRounds;
 		refereeName = t.refereeName;
 		managerName = t.managerName;
+		listOfPlayers = new ArrayList<Player>(t.listOfPlayers);
+		standings = new Standings(t.standings);
+		scoreboard = new Scoreboard(t.scoreboard);	
+		
 	}
 
 	public String getName() {
@@ -93,24 +98,66 @@ import java.util.ArrayList;
 		return new ArrayList<Player>(listOfPlayers);
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
+	public void setStartingDate(String startingDate) {
+		this.startingDate = startingDate;
+	}
+
+	public void setEndingDate(String endingDate) {
+		this.endingDate = endingDate;
+	}
+
+	public void setTimeControl(String timeControl) {
+		this.timeControl = timeControl;
+	}
+
+	public void setNumOfRounds(int numOfRounds) {
+		this.numOfRounds = numOfRounds;
+	}
+
+	public void setRefereeName(String refereeName) {
+		this.refereeName = refereeName;
+	}
+
+	public void setManagerName(String managerName) {
+		this.managerName = managerName;
+	}
+	
+	public boolean isStarted() {
+		return started;
+	}
+	
+	public void setStarted(boolean started) {
+		this.started = started;
+	}
+	
+
 	public void addPlayer(Player p) throws Exception {
 		if (listOfPlayers.contains(p)) {
 			throw new Exception("Player already subscribed.");
 		}
 		listOfPlayers.add(p);
 	}
+	
 
 	public void removePlayer(Player p) {
 		listOfPlayers.remove(p);
 	}
+	
 
 	public void updateStandings() {
 		standings.updateStandings(new Scoreboard(scoreboard));
-		if (standings.getCurrentRound() == numOfRounds) {
-			for (int i = 0; i < listOfPlayers.size(); i++) {
-				listOfPlayers.get(i).updateStats();
-			}
-		}
 	}
 
 	public void uploadResults(String[] results) {
@@ -139,36 +186,10 @@ import java.util.ArrayList;
 		}
 
 	}
-
-	public void editInformation(String nameInformation, Object information) {
-
-		switch (nameInformation) {
-			case "name":
-				name = (String) information;
-				break;
-			case "province":
-				province = (String) information;
-				break;
-			case "region":
-				region = (String) information;
-				break;
-			case "startingDate":
-				startingDate = (String) information;
-				break;
-			case "endingDate":
-				endingDate = (String) information;
-				break;
-			case "timeControl":
-				timeControl = (String) information;
-				break;
-			case "numOfRounds":
-				numOfRounds = (int) information;
-				break;
-			case "refereeName":
-				refereeName = (String) information;
-				break;
-		}
-
+	
+	
+	public void stopTournament() {
+		started = false;
 	}
 
 	public int getPerformance(String name) {

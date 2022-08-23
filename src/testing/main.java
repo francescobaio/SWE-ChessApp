@@ -11,7 +11,7 @@ public class main {
 	    AccountRemover accountRemover =  new Session();
 	    ManagerTournamentCatalog managerCatalog = new ManagerTournamentCatalog(tournamentCatalog);
 	    TournamentManager tournamentManager = new TournamentManager("Erminio","Castaldi",tournamentCatalog,accountRemover,"32800032342",managerCatalog);
-	    Tournament t =tournamentManager.createTournament("Torneo sociale","RI","Lazio","28/02/2022","02/05/2022","90+30",5,"Fabrizio Falsi","Erminio Castaldi");
+	    Tournament t = new Tournament("Torneo sociale","RI","Lazio","28/02/2022","02/05/2022","90+30",5,"Fabrizio Falsi","Erminio Castaldi");
 	    Referee referee = new Referee("Fabrizio","Falsi",tournamentCatalog,accountRemover,t,"IA");
 	    
 	    
