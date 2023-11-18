@@ -1,11 +1,10 @@
 # ChessApp
 
-ChessApp is a Java-based chess application that allows users to play chess against each other. The project includes a detailed documentation file, "Relazione_SWE.pdf," which provides insights into the development process, requirements analysis, class diagrams, and use cases. This README provides a brief overview of the project.
+ChessApp is a Java-based chess application that allows users to organize chess tournaments. The project includes a detailed documentation file, "Relazione_SWE.pdf," which provides insights into the development process, requirements analysis, class diagrams, and use cases. This README provides a brief overview of the project.
 
 ## Overview
 
-ChessApp is a Java application developed as part of a software engineering project. It provides a platform for playing chess, and users can enjoy the classic board game online with their friends.
-
+ChessApp is a Java application developed as part of a software engineering project. It provides a platform for organizing chess tournaments. It allows players to register and participate in chess tournaments. Additionally, it enables tournament referees to calculate pairings and rankings for a given tournament, as it includes a custom implementation of Swiss Pairing. Moreover, organizers can easily upload tournament details and specifications. ChessApp is a versatile tool designed to address the current scarcity of software in Italy capable of efficiently managing chess tournament organization.
 ## Documentation
 
 For a more in-depth understanding of the project, please refer to the documentation file:
@@ -17,7 +16,7 @@ The documentation covers the following aspects:
 - Use cases
 - Implementation details
 
-[![Class Diagram](https://github.com/francescobaio/SWE-ChessApp/blob/master/class_diagram.png)
+![Class Diagram](https://github.com/francescobaio/SWE-ChessApp/blob/master/class_diagram.png)
 
 ## Getting Started
 
